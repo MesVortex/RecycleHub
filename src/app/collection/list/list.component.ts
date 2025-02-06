@@ -4,8 +4,9 @@ import { Component } from '@angular/core';
   selector: 'app-list',
   imports: [],
   templateUrl: './list.component.html',
+  standalone: true,
   styleUrl: './list.component.scss'
 })
-export class ListComponent {
+export class CollectionListComponent {
 
 }

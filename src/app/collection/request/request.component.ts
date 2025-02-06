@@ -4,8 +4,9 @@ import { Component } from '@angular/core';
   selector: 'app-request',
   imports: [],
   templateUrl: './request.component.html',
+  standalone: true,
   styleUrl: './request.component.scss'
 })
-export class RequestComponent {
+export class RequestCollectionComponent {
 
 }

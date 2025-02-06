@@ -4,8 +4,9 @@ import { Component } from '@angular/core';
   selector: 'app-task',
   imports: [],
   templateUrl: './task.component.html',
+  standalone: true,
   styleUrl: './task.component.scss'
 })
-export class TaskComponent {
+export class CollectorTaskComponent{
 
 }

@@ -4,8 +4,9 @@ import { Component } from '@angular/core';
   selector: 'app-redeem',
   imports: [],
   templateUrl: './redeem.component.html',
+  standalone: true,
   styleUrl: './redeem.component.scss'
 })
-export class RedeemComponent {
+export class RedeemPointsComponent {
 
 }

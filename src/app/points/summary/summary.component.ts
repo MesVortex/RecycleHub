@@ -4,8 +4,9 @@ import { Component } from '@angular/core';
   selector: 'app-summary',
   imports: [],
   templateUrl: './summary.component.html',
+  standalone: true,
   styleUrl: './summary.component.scss'
 })
-export class SummaryComponent {
+export class PointsSummaryComponent {
 
 }
