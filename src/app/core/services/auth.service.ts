@@ -17,6 +17,7 @@ export class AuthService {
     }
 
     // Add the new user to the list
+    userData.role = 'user'; // set default role
     users.push(userData);
 
     // Save the updated list back to localStorage
