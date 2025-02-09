@@ -1,1 +1,22 @@
-<p>list works!</p>
+<div class="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+  <h1 class="text-2xl font-bold mb-6 text-center">Your Collection Requests</h1>
+
+  <div *ngFor="let request of requests$ | async" class="mb-6 p-4 border border-gray-200 rounded-md">
+    <div class="flex justify-between items-center">
+      <div>
+        <p class="text-lg font-semibold">{{ request.wasteType | titlecase }}</p>
+        <p class="text-sm text-gray-600">Status: {{ request.status }}</p>
+      </div>
+      <button
+        (click)="onDeleteRequest(request.id)"
+        class="bg-red-500 text-white py-1 px-3 rounded-md hover:bg-red-600 transition duration-200"
+      >
+        Delete
+      </button>
+    </div>
+    <p class="mt-2 text-sm text-gray-700">Weight: {{ request.estimatedWeight }}g</p>
+    <p class="text-sm text-gray-700">Address: {{ request.collectionAddress }}</p>
+    <p class="text-sm text-gray-700">Date: {{ request.collectionDate }} at {{ request.collectionTime }}</p>
+    <p *ngIf="request.notes" class="text-sm text-gray-700">Notes: {{ request.notes }}</p>
+  </div>
+</div>
