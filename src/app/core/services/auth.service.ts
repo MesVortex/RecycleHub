@@ -58,4 +58,17 @@ export class AuthService {
       return false;
     }
   }
+
+  deleteUser(email: string): boolean {
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const updatedUsers = users.filter((user: any) => user.email !== email); // Remove the user
+
+    if (updatedUsers.length < users.length) {
+      localStorage.setItem('users', JSON.stringify(updatedUsers)); // Save the updated list
+      localStorage.removeItem('currentUser'); // Remove the logged-in user
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

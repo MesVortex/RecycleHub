@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -19,5 +19,18 @@ export class ProfileComponent {
 
   onEditProfile() {
     this.router.navigate(['/edit-profile']); // Navigate to the edit profile page
+  }
+
+  onDeleteAccount() {
+    if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+      const isDeleted = this.authService.deleteUser(this.user.email);
+
+      if (isDeleted) {
+        this.authService.logout(); // Log out the user
+        this.router.navigate(['/login']); // Redirect to the login page
+      } else {
+        alert('Failed to delete account. Please try again.');
+      }
+    }
   }
 }
