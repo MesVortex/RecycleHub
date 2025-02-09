@@ -1,1 +1,42 @@
-<p>profile works!</p>
+<div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+  <h1 class="text-2xl font-bold mb-6 text-center">Your Profile</h1>
+
+  <div class="space-y-4">
+    <div>
+      <label class="block text-sm font-medium text-gray-700">First Name</label>
+      <p class="mt-1 p-2 bg-gray-100 rounded">{{ user?.firstName }}</p>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Last Name</label>
+      <p class="mt-1 p-2 bg-gray-100 rounded">{{ user?.lastName }}</p>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Email</label>
+      <p class="mt-1 p-2 bg-gray-100 rounded">{{ user?.email }}</p>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Address</label>
+      <p class="mt-1 p-2 bg-gray-100 rounded">{{ user?.address }}</p>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Phone Number</label>
+      <p class="mt-1 p-2 bg-gray-100 rounded">{{ user?.phoneNumber }}</p>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Date of Birth</label>
+      <p class="mt-1 p-2 bg-gray-100 rounded">{{ user?.dateOfBirth }}</p>
+    </div>
+  </div>
+
+  <button
+    (click)="onEditProfile()"
+    class="mt-6 w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-200"
+  >
+    Edit Profile
+  </button>
+</div>

@@ -44,4 +44,18 @@ export class AuthService {
   getCurrentUser(): any {
     return JSON.parse(localStorage.getItem('currentUser') || 'null');
   }
+
+  updateUser(updatedUser: any): boolean {
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const userIndex = users.findIndex((u: any) => u.email === updatedUser.email);
+
+    if (userIndex !== -1) {
+      users[userIndex] = updatedUser; // Update the user data
+      localStorage.setItem('users', JSON.stringify(users)); // Save the updated list
+      localStorage.setItem('currentUser', JSON.stringify(updatedUser)); // Update the logged-in user
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

@@ -5,5 +5,5 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 export const USER_ROUTES: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'edit-profile', component: EditProfileComponent },
-  { path: '', redirectTo: 'profile', pathMatch: 'full' },
+  { path: '', redirectTo: 'profile', pathMatch: 'full' }, // Default route
 ];
