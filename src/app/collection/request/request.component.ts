@@ -31,9 +31,17 @@ export class RequestCollectionComponent {
   }
 
   onSubmit() {
-    this.activeRequestsCount$.subscribe((count) => {
-      if (count >= 3) {
+    this.activeRequests$.subscribe((requests) => {
+      const activeRequests = requests.filter(request => request.status === 'pending' || request.status === 'occupied');
+      const totalWeight = activeRequests.reduce((sum, request) => sum + request.estimatedWeight, 0);
+
+      if (activeRequests.length >= 3) {
         alert('You cannot have more than 3 active requests.');
+        return;
+      }
+
+      if (totalWeight + this.requestForm.value.estimatedWeight > 10000) {
+        alert('You cannot have more than 10kg of active requests.');
         return;
       }
 
