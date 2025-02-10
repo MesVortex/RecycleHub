@@ -65,12 +65,24 @@
               </div>
             </div>
           </div>
-          <div class="mb-5">
-            <label for="dateOfBirth" class="dark:text-gray-400">Date of Birth</label>
-            <input id="dateOfBirth" formControlName="dateOfBirth" type="date"
-                   class="border mt-2 px-3 py-2 dark:text-gray-300 focus:border-green-600 outline-none shadow-md border-yellow-500 rounded-lg w-full" />
-            <div *ngIf="registerForm.get('dateOfBirth')?.invalid && registerForm.get('dateOfBirth')?.touched">
-              <small class="text-red-500 font-medium" *ngIf="registerForm.get('dateOfBirth')?.errors?.['required']">Date of birth is required.</small>
+
+          <div class="flex w-full justify-between gap-5 mb-5">
+            <div class="w-full">
+              <label for="dateOfBirth" class="dark:text-gray-400">Date of Birth</label>
+              <input id="dateOfBirth" formControlName="dateOfBirth" type="date"
+                     class="border mt-2 px-3 py-2 dark:text-gray-300 focus:border-green-600 outline-none shadow-md border-yellow-500 rounded-lg w-full" />
+              <div *ngIf="registerForm.get('dateOfBirth')?.invalid && registerForm.get('dateOfBirth')?.touched">
+                <small class="text-red-500 font-medium" *ngIf="registerForm.get('dateOfBirth')?.errors?.['required']">Date of birth is required.</small>
+              </div>
+            </div>
+
+            <div class="w-full">
+              <label for="city" class="dark:text-gray-400">City</label>
+              <input id="city" formControlName="city" type="text"
+                     class="border mt-2 px-3 py-2 dark:text-gray-300 focus:border-green-600 outline-none shadow-md border-yellow-500 rounded-lg w-full" />
+              <div *ngIf="registerForm.get('city')?.invalid && registerForm.get('city')?.touched">
+                <small class="text-red-500 font-medium" *ngIf="registerForm.get('city')?.errors?.['required']">City is required.</small>
+              </div>
             </div>
           </div>
 

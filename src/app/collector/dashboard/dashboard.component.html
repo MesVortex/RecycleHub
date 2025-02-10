@@ -1,1 +1,53 @@
-<p>dashboard works!</p>
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-6">Collection Requests in {{collectorCity}}</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <ng-container *ngIf="(cityRequests$ | async)?.length; else noRequests">
+      <div *ngFor="let request of cityRequests$ | async" 
+           class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-semibold">{{request.wasteType}}</h2>
+          <span class="px-3 py-1 rounded-full text-sm" 
+                [ngClass]="{'bg-yellow-100 text-yellow-800': request.status === 'pending'}">
+            {{request.status}}
+          </span>
+        </div>
+
+        <div class="space-y-2">
+          <p class="text-gray-600">
+            <span class="font-medium">Weight:</span> {{request.estimatedWeight}}g
+          </p>
+          <p class="text-gray-600">
+            <span class="font-medium">Address:</span> {{request.collectionAddress}}
+          </p>
+          <p class="text-gray-600">
+            <span class="font-medium">Date:</span> {{request.collectionDate}}
+          </p>
+          <p class="text-gray-600">
+            <span class="font-medium">Time:</span> {{request.collectionTime}}
+          </p>
+          <p *ngIf="request.notes" class="text-gray-600">
+            <span class="font-medium">Notes:</span> {{request.notes}}
+          </p>
+        </div>
+
+        <div class="mt-4 flex justify-end space-x-2">
+          <button (click)="acceptRequest(request)"
+                  class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors duration-200">
+            Accept
+          </button>
+          <button (click)="rejectRequest(request)"
+                  class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors duration-200">
+            Reject
+          </button>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #noRequests>
+      <div class="col-span-full text-center py-8">
+        <p class="text-gray-500">No collection requests available in your city.</p>
+      </div>
+    </ng-template>
+  </div>
+</div>

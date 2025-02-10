@@ -8,6 +8,7 @@ export interface CollectionRequest {
   collectionTime: string;
   notes?: string;
   status: 'pending' | 'occupied' | 'in-progress' | 'validated' | 'rejected';
+  city: string;
 }
 
 export interface CollectionState {

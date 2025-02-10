@@ -27,6 +27,7 @@ export class RegisterComponent {
       address: ['', Validators.required],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
       dateOfBirth: ['', Validators.required],
+      city: ['', Validators.required],
     });
   }
 

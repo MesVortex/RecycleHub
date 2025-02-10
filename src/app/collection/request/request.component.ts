@@ -1,15 +1,20 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { v4 as uuidv4 } from 'uuid';
 import {Observable} from 'rxjs';
 import {CollectionRequest, CollectionState} from '../../store/collection/collection.state';
 import {addCollectionRequest} from '../../store/collection/collection.actions';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-request-collection',
   templateUrl: './request.component.html',
   styleUrls: ['./request.component.scss'],
+  imports: [
+    ReactiveFormsModule,
+    NgIf
+  ],
   standalone: true
 })
 export class RequestCollectionComponent {
@@ -25,15 +30,16 @@ export class RequestCollectionComponent {
       collectionDate: ['', Validators.required],
       collectionTime: ['', Validators.required],
       notes: [''],
+      city: ['', Validators.required],
     });
 
     this.activeRequestsCount$ = this.store.select((state) => state.collection.activeRequestsCount);
   }
 
   onSubmit() {
-    this.activeRequests$.subscribe((requests) => {
-      const activeRequests = requests.filter(request => request.status === 'pending' || request.status === 'occupied');
-      const totalWeight = activeRequests.reduce((sum, request) => sum + request.estimatedWeight, 0);
+    this.store.select((state) => state.collection.requests).subscribe((requests: CollectionRequest[]) => {
+      const activeRequests = requests.filter((request: CollectionRequest) => request.status === 'pending' || request.status === 'occupied');
+      const totalWeight = activeRequests.reduce((sum: number, request: CollectionRequest) => sum + request.estimatedWeight, 0);
 
       if (activeRequests.length >= 3) {
         alert('You cannot have more than 3 active requests.');
@@ -56,6 +62,7 @@ export class RequestCollectionComponent {
           collectionTime: this.requestForm.value.collectionTime,
           notes: this.requestForm.value.notes,
           status: 'pending',
+          city: this.requestForm.value.city,
         };
 
         this.store.dispatch(addCollectionRequest({ request })); // Dispatch the action
