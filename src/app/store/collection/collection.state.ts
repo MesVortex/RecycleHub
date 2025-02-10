@@ -12,12 +12,14 @@ export interface CollectionRequest {
 
 export interface CollectionState {
   requests: CollectionRequest[];
+  activeRequestsCount: number;
   loading: boolean;
   error: string | null;
 }
 
 export const initialState: CollectionState = {
   requests: [],
+  activeRequestsCount: 0,
   loading: false,
   error: null,
 };
