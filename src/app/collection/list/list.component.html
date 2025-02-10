@@ -14,6 +14,12 @@
         >
           Edit
         </button>
+        <button
+          (click)="onDeleteRequest(request.id)"
+          class="bg-red-500 text-white py-1 px-3 rounded-md hover:bg-red-600 transition duration-200"
+        >
+          Delete
+        </button>
       </div>
     </div>
     <p class="mt-2 text-sm text-gray-700">Weight: {{ request.estimatedWeight }}g</p>
