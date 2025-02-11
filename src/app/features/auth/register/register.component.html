@@ -1,0 +1,255 @@
+<div class="min-h-screen bg-gradient-to-br from-green-800/90 via-white to-green-950/90 p-4 md:p-8">
+  <div class="max-w-4xl mx-auto">
+    <div class="bg-white/90 backdrop-blur-sm p-6 md:p-10 rounded-2xl shadow-2xl">
+      <!-- Header section remains unchanged -->
+
+      <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="space-y-8">
+        <!-- Informations personnelles -->
+        <div class="bg-green-50/50 backdrop-blur-sm p-8 rounded-2xl border border-green-200 hover:border-green-300 transition-colors">
+          <h3 class="text-2xl font-bold text-green-900 mb-6 pb-3 border-b-2 border-green-200 flex items-center">
+            <!-- SVG icon remains unchanged -->
+            Informations personnelles
+          </h3>
+
+          <div class="grid gap-8 md:grid-cols-2">
+            <!-- Prénom -->
+            <div class="space-y-2">
+              <label for="firstName" class="block text-base font-semibold text-green-800">Prénom *</label>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                [(ngModel)]="user.firstName"
+                required
+                [class.border-red-500]="formErrors.firstName"
+                (blur)="onFieldChange('firstName')"
+                (input)="onFieldChange('firstName')"
+                placeholder="Votre prénom"
+                class="w-full p-4 bg-white/80 border-2 border-green-200 rounded-xl focus:ring-4 focus:ring-green-500/20 focus:border-green-500 transition-all"
+              >
+              <p *ngIf="formErrors.firstName" class="mt-2 text-sm text-red-600">
+                {{ formErrors.firstName }}
+              </p>
+            </div>
+
+            <!-- Nom -->
+            <div class="space-y-2">
+              <label for="lastName" class="block text-base font-semibold text-green-800">Nom *</label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                [(ngModel)]="user.lastName"
+                required
+                [class.border-red-500]="formErrors.lastName"
+                (blur)="onFieldChange('lastName')"
+                (input)="onFieldChange('lastName')"
+                placeholder="Votre nom"
+                class="w-full p-4 bg-white/80 border-2 border-green-200 rounded-xl focus:ring-4 focus:ring-green-500/20 focus:border-green-500 transition-all"
+              >
+              <p *ngIf="formErrors.lastName" class="mt-2 text-sm text-red-600">
+                {{ formErrors.lastName }}
+              </p>
+            </div>
+
+            <!-- Email -->
+            <div class="space-y-2">
+              <label for="email" class="block text-base font-semibold text-green-800">Email *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                [(ngModel)]="user.email"
+                required
+                [class.border-red-500]="formErrors.email"
+                (blur)="onFieldChange('email')"
+                (input)="onFieldChange('email')"
+                placeholder="votre@email.com"
+                class="w-full p-4 bg-white/80 border-2 border-green-200 rounded-xl focus:ring-4 focus:ring-green-500/20 focus:border-green-500 transition-all"
+              >
+              <p *ngIf="formErrors.email" class="mt-2 text-sm text-red-600">
+                {{ formErrors.email }}
+              </p>
+            </div>
+
+            <!-- Mot de passe -->
+            <div class="space-y-2">
+              <label for="password" class="block text-base font-semibold text-green-800">Mot de passe *</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                [(ngModel)]="user.password"
+                required
+                [class.border-red-500]="formErrors.password"
+                (blur)="onFieldChange('password')"
+                (input)="onFieldChange('password')"
+                placeholder="Minimum 6 caractères"
+                class="w-full p-4 bg-white/80 border-2 border-green-200 rounded-xl focus:ring-4 focus:ring-green-500/20 focus:border-green-500 transition-all"
+              >
+              <p *ngIf="formErrors.password" class="mt-2 text-sm text-red-600">
+                {{ formErrors.password }}
+              </p>
+            </div>
+
+            <!-- Date de naissance -->
+            <div class="md:col-span-2 space-y-2">
+              <label for="dateOfBirth" class="block text-base font-semibold text-green-800">Date de naissance *</label>
+              <input
+                type="date"
+                id="dateOfBirth"
+                name="dateOfBirth"
+                [(ngModel)]="user.dateOfBirth"
+                required
+                [class.border-red-500]="formErrors.dateOfBirth"
+                (blur)="onFieldChange('dateOfBirth')"
+                (change)="onFieldChange('dateOfBirth')"
+                class="w-full p-4 bg-white/80 border-2 border-green-200 rounded-xl focus:ring-4 focus:ring-green-500/20 focus:border-green-500 transition-all"
+              >
+              <p *ngIf="formErrors.dateOfBirth" class="mt-2 text-sm text-red-600">
+                {{ formErrors.dateOfBirth }}
+              </p>
+            </div>
+          </div>
+          <div class="md:col-span-2 space-y-2">
+            <label for="profilePhoto" class="block text-base font-semibold text-green-800">Photo de profil (optionnel)</label>
+            <input
+              type="file"
+              id="profilePhoto"
+              name="profilePhoto"
+              (change)="onFileSelected($event)"
+              accept="image/*"
+              class="w-full p-4 bg-white/80 border-2 border-green-200 rounded-xl focus:ring-4 focus:ring-green-500/20 focus:border-green-500 transition-all"
+            >
+            <p *ngIf="formErrors.profilePhoto" class="mt-2 text-sm text-red-600">
+              {{ formErrors.profilePhoto }}
+            </p>
+          </div>
+        </div>
+
+        <!-- Coordonnées -->
+        <div class="bg-green-50/50 backdrop-blur-sm p-8 rounded-2xl border border-green-200 hover:border-green-300 transition-colors">
+          <h3 class="text-2xl font-bold text-green-900 mb-6 pb-3 border-b-2 border-green-200 flex items-center">
+            <!-- SVG icon remains unchanged -->
+            Coordonnées
+          </h3>
+
+          <div class="space-y-6">
+            <!-- Street Address -->
+            <div class="space-y-2">
+              <label for="street" class="block text-base font-semibold text-green-800">Rue *</label>
+              <input
+                type="text"
+                id="street"
+                name="street"
+                [(ngModel)]="user.address.street"
+                required
+                [class.border-red-500]="formErrors['address.street']"
+                (blur)="onFieldChange('address.street')"
+                (input)="onFieldChange('address.street')"
+                placeholder="Numéro et nom de rue"
+                class="w-full p-4 bg-white/80 border-2 border-green-200 rounded-xl focus:ring-4 focus:ring-green-500/20 focus:border-green-500 transition-all"
+              >
+              <p *ngIf="formErrors['address.street']" class="mt-2 text-sm text-red-600">
+                {{ formErrors['address.street'] }}
+              </p>
+            </div>
+
+            <!-- City -->
+            <div class="space-y-2">
+              <label for="city" class="block text-base font-semibold text-green-800">Ville *</label>
+              <input
+                type="text"
+                id="city"
+                name="city"
+                [(ngModel)]="user.address.city"
+                required
+                [class.border-red-500]="formErrors['address.city']"
+                (blur)="onFieldChange('address.city')"
+                (input)="onFieldChange('address.city')"
+                placeholder="Ville"
+                class="w-full p-4 bg-white/80 border-2 border-green-200 rounded-xl focus:ring-4 focus:ring-green-500/20 focus:border-green-500 transition-all"
+              >
+              <p *ngIf="formErrors['address.city']" class="mt-2 text-sm text-red-600">
+                {{ formErrors['address.city'] }}
+              </p>
+            </div>
+
+            <!-- Téléphone -->
+            <div class="space-y-2">
+              <label for="phoneNumber" class="block text-base font-semibold text-green-800">Numéro de téléphone *</label>
+              <input
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                [(ngModel)]="user.phoneNumber"
+                required
+                [class.border-red-500]="formErrors.phoneNumber"
+                (blur)="onFieldChange('phoneNumber')"
+                (input)="onFieldChange('phoneNumber')"
+                placeholder="Ex: 06 12 34 56 78"
+                class="w-full p-4 bg-white/80 border-2 border-green-200 rounded-xl focus:ring-4 focus:ring-green-500/20 focus:border-green-500 transition-all"
+              >
+              <p *ngIf="formErrors.phoneNumber" class="mt-2 text-sm text-red-600">
+                {{ formErrors.phoneNumber }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Type de compte section remains unchanged -->
+
+        <!-- Terms and Submit -->
+        <div class="space-y-8">
+          <div class="flex items-start gap-4">
+            <input
+              type="checkbox"
+              id="terms"
+              [(ngModel)]="termsAccepted"
+              name="terms"
+              [class.border-red-500]="formErrors.terms"
+              class="mt-1.5 h-5 w-5 rounded-lg border-2 border-green-300 text-green-600 focus:ring-4 focus:ring-green-500/20"
+            >
+            <div class="flex flex-col">
+              <label for="terms" class="text-base text-green-700">
+                J'accepte les <a href="#" class="text-green-600 hover:text-green-700 underline">conditions d'utilisation</a> et la
+                <a href="#" class="text-green-600 hover:text-green-700 underline">politique de confidentialité</a>
+              </label>
+              <p *ngIf="formErrors.terms" class="mt-1 text-sm text-red-600">
+                {{ formErrors.terms }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Error Messages -->
+          <div class="space-y-4">
+            <p *ngIf="formErrors.general" class="text-red-600 text-center text-lg font-semibold">
+              {{ formErrors.general }}
+            </p>
+            <p *ngIf="(error$ | async) as error" class="text-red-600 text-center text-lg font-semibold">
+              {{ error }}
+            </p>
+          </div>
+
+          <button
+            type="submit"
+            [disabled]="!registerForm.form.valid || !termsAccepted"
+            class="w-full py-4 px-6 bg-gradient-to-r from-green-500 to-green-600 text-white text-xl font-semibold rounded-xl
+                   hover:from-green-600 hover:to-green-700 focus:outline-none focus:ring-4 focus:ring-green-500/20
+                   disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+          >
+            <span *ngIf="!(loading$ | async)">Créer mon compte</span>
+            <span *ngIf="loading$ | async">Création en cours...</span>
+          </button>
+
+          <p class="text-center text-lg text-green-700">
+            Déjà membre ?
+            <a routerLink="/login" class="text-green-600 hover:text-green-700 font-medium underline">
+              Se connecter
+            </a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

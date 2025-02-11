@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1",
+    "email": "collecteur1@example.com",
+    "password": "pass123",
+    "firstName": "John",
+    "lastName": "Doe",
+    "address": {
+      "street": "123 Rue de la Paix",
+      "city": "Safi"
+    },
+    "phoneNumber": "0612345678",
+    "dateOfBirth": "1990-01-15",
+    "role": "collecteurs"
+  },
+  {
+    "id": "2",
+    "email": "collecteur2@example.com",
+    "password": "pass456",
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "address": {
+      "street": "456 Avenue des Lumières",
+      "city": "Casablanca"
+    },
+    "phoneNumber": "0698765432",
+    "dateOfBirth": "1985-07-22",
+    "role": "collecteurs"
+  }
+]
