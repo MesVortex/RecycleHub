@@ -34,10 +34,9 @@ export class LoginComponent {
   constructor(private readonly store: Store, private readonly router: Router) {}
 
   onSubmit() {
-    // Réinitialiser les erreurs
+
     this.resetErrors();
 
-    // Validation des inputs
     if (!this.email && !this.password) {
       this.formErrors.general = "Tous les champs sont obligatoires.";
       return;
@@ -58,7 +57,6 @@ export class LoginComponent {
       return;
     }
 
-    // Vérification de l'utilisateur dans localStorage
     const usersJson = localStorage.getItem("recyclehub-users");
     const users = usersJson ? JSON.parse(usersJson) : [];
     const user = users.find((u: any) => u.email === this.email);
@@ -73,7 +71,6 @@ export class LoginComponent {
       return;
     }
 
-    // Si tout est bon, on dispatch l'action
     this.store.dispatch(login({ email: this.email, password: this.password }));
   }
 

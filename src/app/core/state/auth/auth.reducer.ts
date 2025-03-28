@@ -50,10 +50,8 @@ export const authReducer = createReducer(
     error,
   })),
 
-  // Déconnexion
   on(AuthActions.logout, (state) => ({ ...state, user: null })),
 
-  // Mise à jour du profil
   on(AuthActions.updateProfile, (state) => ({ ...state, loading: true })),
   on(AuthActions.updateProfileSuccess, (state, { user }) => ({
     ...state,

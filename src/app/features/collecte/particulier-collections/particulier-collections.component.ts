@@ -1,5 +1,5 @@
-  import {Component, OnDestroy, OnInit} from '@angular/core';
-  import {Observable, Subject, map, takeUntil, combineLatest} from "rxjs";
+  import {Component, OnInit} from '@angular/core';
+  import {Observable, map, combineLatest} from "rxjs";
   import {WasteRequest, WasteTypeWeight} from "../../../shared/models/collection-request.model";
   import {Store} from "@ngrx/store";
   import {selectUser} from "../../../core/state/auth/auth.selectors";
@@ -12,7 +12,6 @@
   import {User} from "../../../shared/models/user.model";
   import {
     deleteWasteRequest,
-    loadWasteRequests
   } from "../../../core/state/collection-requests/collection-requests.actions";
 
   @Component({
@@ -79,12 +78,6 @@
       }
     }
 
-    private getCurrentUser(): void {
-      const userString = localStorage.getItem("loggedInUser")
-      if (userString) {
-        this.currentUser$ = JSON.parse(userString)
-      }
-    }
     formatAddress(address: { street: string; city: string }): string {
       return `${address.street}, ${address.city}`
     }
